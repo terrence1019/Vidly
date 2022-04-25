@@ -50,7 +50,8 @@ namespace Vidly.Controllers
         }
 
 
-        //ACTION FOUND IN VIEW FOR FORM. USED FOR FORM OPERATIONS
+        //ACTION FOUND IN VIEW FOR FORM.
+        //USED FOR FORM OPERATIONS IN CONJUNCTION WITH DATABASE (MODEL BINDING)
         [HttpPost]
         public ActionResult CreateMembershipType(MembershipType membershiptype)
         {
@@ -64,10 +65,23 @@ namespace Vidly.Controllers
             Console.WriteLine(b);
             Console.WriteLine(c);
             Console.WriteLine(d);
-            Console.WriteLine();
 
-            //dbContext.membershipTypeDB.Add(membershiptype);
-            //dbContext.SaveChanges();
+            //AUTO-INCREMENT MembershipTypeID
+            //Count the number of pre-existing records
+            //Casting to byte required due to DataType of MembershipTypeID
+            byte PreExistingRecords = (byte) dbContext.membershipTypeDB.Count();
+            byte by1 = 1;
+            byte AutoIncrementID = (byte) (PreExistingRecords + by1);
+            Console.WriteLine(PreExistingRecords);
+
+            //Membershiptype.MembershipTypeID = Auto-Increment by 1
+            membershiptype.MembershipTypeID = AutoIncrementID;
+
+            var e = membershiptype.MembershipTypeID;
+            Console.WriteLine(e);
+
+            dbContext.membershipTypeDB.Add(membershiptype);
+            dbContext.SaveChanges();
 
             //Once the data has been sent to the database for update,
             //return to the View listing all Membership Types

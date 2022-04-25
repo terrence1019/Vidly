@@ -174,6 +174,10 @@
     <Compile Include="Migrations\202204250014451_AssignMembershipName_to_MembershipID.designer.cs">
       <DependentUpon>202204250014451_AssignMembershipName_to_MembershipID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204251422533_ModifyMembershipTypesRecords.cs" />
+    <Compile Include="Migrations\202204251422533_ModifyMembershipTypesRecords.designer.cs">
+      <DependentUpon>202204251422533_ModifyMembershipTypesRecords.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -282,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204250014451_AssignMembershipName_to_MembershipID.resx">
       <DependentUpon>202204250014451_AssignMembershipName_to_MembershipID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204251422533_ModifyMembershipTypesRecords.resx">
+      <DependentUpon>202204251422533_ModifyMembershipTypesRecords.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
