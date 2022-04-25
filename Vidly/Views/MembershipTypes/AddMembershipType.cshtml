@@ -14,31 +14,37 @@
 {
 
     @*<div class="form-group">
-            @Html.LabelFor(m => m.MembershipTypeID)
-            @Html.TextBoxFor(m => m.MembershipTypeID, new { @class = "form-control" })
-    </div>*@
+                @Html.LabelFor(m => m.MembershipTypeID)
+                @Html.TextBoxFor(m => m.MembershipTypeID, new { @class = "form-control" })
+        </div>*@
 
     <div class="form-group">
         @Html.LabelFor(m => m.MembershipName)
         @Html.TextBoxFor(m => m.MembershipName, new { @class = "form-control" })
     </div>
 
+    <br />
+
     <div class="form-group">
         @Html.LabelFor(m => m.RegistrationFee)
         @Html.TextBoxFor(m => m.RegistrationFee, new { @class = "form-control" })
     </div>
+
+    <br />
 
     <div class="form-group">
         @Html.LabelFor(m => m.SubscriptionDuration)
         @Html.TextBoxFor(m => m.SubscriptionDuration, new { @class = "form-control" })
     </div>
 
+    <br />
+
     <div class="form-group">
         @Html.LabelFor(m => m.DiscountRate)
         @Html.TextBoxFor(m => m.DiscountRate, new { @class = "form-control" })
     </div>
 
-    @*<button type="submit" class="btn btn-primary" id="CreateMembershipType" value="CreateMembershipType">SUBMIT</button>*@
+    <br />
 
     <input type="submit" class="btn btn-primary" value="Submit">
 
