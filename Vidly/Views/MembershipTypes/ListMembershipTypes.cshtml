@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Vidly.Models.MembershipType>
+
+@{
+    ViewBag.Title = "ListMembershipTypes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ListMembershipTypes</h2>
+
+
+
+@foreach (var membershiptype in Model)
+{
+    <li>@membershiptype.MembershipTypeID - @membershiptype.MembershipName   </li>
+}

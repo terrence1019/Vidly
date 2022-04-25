@@ -1,0 +1,39 @@
+﻿@model Vidly.Models.Customer
+
+@{
+    ViewBag.Title = "AddCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Customer</h2>
+
+<!--
+
+using(){} enables the form to be closed and represents <form></form> and disposes form at end-of-use
+Html.BeginForm("ActionName", "ControllerName")
+
+-->
+
+@using (Html.BeginForm("AddACustomer", "Customers"))
+{
+
+    <!-- Special markup and class applied to form fields to ensure proper rendering -->
+    <!-- TEXT FIELD -->
+    <div class="form-group">
+        <!-- Inside this we need a 1) Label and 2) an Input field: -->
+        <!-- For this field, we use HTML helper code -->
+        <!-- Lambda expression to identify Field from Customer model -->
+        @Html.LabelFor(c => c.CustomerName)
+        @Html.TextBoxFor(c => c.CustomerName, new { @class = "form-control" })
+    </div>
+    <!-- CHECKBOX -->    
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(c => c.IsSubscribedToNewsletter) Subscribed to Newsletter?
+        </label>
+    </div>
+
+
+
+
+}

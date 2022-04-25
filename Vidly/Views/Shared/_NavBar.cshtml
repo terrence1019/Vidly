@@ -1,0 +1,36 @@
+﻿<!-- Navigation bar removed from _Layout.cshtml to Partial View called _NavBar.cshtml -->
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("VIDLY by TJ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse expand">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                <!-- ActionLink Syntax: Link_Name, View_Name, View_Folder -->
+                <!-- A Link called "Customer Sample leading to Customers\CustomerSample"-->
+                <!-- Application Structure: Views/Customers/CustomerSample -->
+                <li>@Html.ActionLink("Customer Sample", "CustomerSample", "Customers")</li>
+
+                <!-- A Link called "Movie Rental Customer List to Movies\MovieRentalCustomerList"-->
+                <!-- Application Structure: Views/Movies/MovieRentalCustomerList -->
+                <li>@Html.ActionLink("Movie Rental Customer List", "MovieRentalCustomerList", "Movies")</li>
+
+                <!-- Application Structure: Views/Customers/ListCustomers -->
+                <li>@Html.ActionLink("Customers", "ListCustomers", "Customers")</li>
+
+                <li>@Html.ActionLink("Add New Customer", "AddCustomer", "Customers")</li>
+
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,118 @@
+﻿<!-- The Views page is a mix of C# code and HTML/CSS: hence the name CSHTML -->
+<!-- The "at" symbol enables C# code -->
+
+<!-- Identifies what Project, Namespace, and Classes for the Model we are using -->
+@*Syntax: @model ProjectName.Namespace.Class*@
+@model Vidly.ViewModels.RentalViewModel
+@using System
+
+
+
+<!-- Relates to the Controller. In this case: MoviesController-->
+<!-- View name == Action name in respective Controller -->
+<!-- In this case: Randomizer() action from MoviesController -->
+@{
+    ViewBag.Title = "Vidly's Movie Rental Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- CSS RULES -->
+<!-- Creating Shapes with CSS: https://www.w3schools.com/howto/howto_css_shapes.asp-->
+<style>
+
+    .rented {
+        background-color: royalblue;
+        color: white;
+        width: 120px;
+    }
+</style>
+
+<h2>Movie Rental Customers</h2>
+
+
+
+<!-- We can use certain CSS code based on certain C# code -->
+@{
+    //Using a ternary option to set a specific value
+    //If movie was rented, it will use appropriate CSS rules
+    string WasRented = Model.MovieRentalCustomers.Count > 0 ? "rented" : null;
+    string RentStatus = Model.MovieRentalCustomers.Count > 0 ? "RENTED" : null;
+}
+
+<table>
+    <thead>
+        <tr><th>RENT STATUS</th> <th>RENTAL COUNT</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class=@WasRented>@RentStatus</td>
+            <td>@Model.MovieRentalCustomers.Count</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<br />
+
+
+<!-- <text> tag is not part of HTML Code, but is understood by Razor View -->
+<text>Number of Rentals for this Movie = @Model.MovieRentalCustomers.Count</text>
+
+
+<br />
+
+
+<h4>Customer List: List Format</h4>
+
+<ul>
+
+    @foreach (var customer in Model.MovieRentalCustomers)
+    {
+        <li>
+            @customer.CustomerName
+        </li>
+    }
+
+</ul>
+
+
+<h4>Customer List: Table Format</h4>
+
+<!-- BONUS WORK: Style table using internal CSS -->
+
+<table>
+
+    <thead>
+        <tr><th>CUSTOMER ID</th><th>CUSTOMER NAME</th></tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var customer in Model.MovieRentalCustomers)
+        {
+            //Table row per customer
+            <tr>
+                <td>@customer.CustomerID</td>
+                <td>@customer.CustomerName</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+<br />
+
+<h4>Finding Adam</h4>
+
+@foreach (var customer in Model.MovieRentalCustomers)
+{
+    if (customer.CustomerID == 1)
+    {
+        //Output data using HTML Code:
+        <p>"Adam! The First Man! He has an ID of @customer.CustomerID"</p>
+    }
+
+}
+

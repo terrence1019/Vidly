@@ -1,0 +1,65 @@
+﻿@model Vidly.ViewModels.AddCustomerViewModel
+@{
+    ViewBag.Title = "AddCustomer2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Customer including MembershipType</h2>
+
+<!--
+    Since we are using Vidly.ViewModels.AddCustomerViewModel as the model, we need to prefix Customer to the fields
+    related to Customer model
+-->
+<!--
+
+https://www.completecsharptutorial.com/asp-net-mvc5/html-beginform-example-tutorial-aspnet-mvc5.php
+Html.BeginForm("ActionMethod", "ControllerName","Get⁄Post Method")
+
+
+
+
+using(){} enables the form to be closed and represents <form></form> and disposes form at end-of-use
+Html.BeginForm("ActionName", "ControllerName")
+
+-->
+
+@using (Html.BeginForm("CreateCustomer", "Customers", FormMethod.Post))
+{
+
+    <!-- Special markup and class applied to form fields to ensure proper rendering -->
+    <!-- TEXT FIELD -->
+    <div class="form-group">
+        <!-- Inside this we need a 1) Label and 2) an Input field: -->
+        <!-- For this field, we use HTML helper code -->
+        <!-- Lambda expression to identify Field from Customer model -->
+        <!-- Since we are using Vidly.ViewModels.AddCustomerViewModel as the model,
+            we need to prefix ASingleCustomer to the fields related to Customer model.
+            The field ASingleCustomer is found in the Vidly.ViewModels.AddCustomerViewModel model
+        -->
+        @Html.LabelFor(m => m.ASingleCustomer.CustomerName)
+        @Html.TextBoxFor(m => m.ASingleCustomer.CustomerName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ASingleCustomer.CustomerName)
+    </div>
+    <br />
+    <!-- CHECKBOX -->
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.ASingleCustomer.IsSubscribedToNewsletter) Subscribed to Newsletter?
+        </label>
+    </div>
+    <br />
+    <!-- DROPDOWN -->
+    <div class="form-group">
+        @Html.LabelFor(m => m.ASingleCustomer.MembershipTypeID)
+        @Html.DropDownListFor(m => m.ASingleCustomer.MembershipTypeID, new SelectList(Model.ListOfMembershipTypes, "MembershipTypeID", "MembershipName"), "Select Membership from below", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ASingleCustomer.MembershipTypeID)
+    </div>
+    <br />
+
+    //Model Binding:
+    //Adding a button to save all Form input
+    <button type="submit" class="btn btn-primary" id ="CreateCustomer" value="CreateCustomer">Save</button>
+
+    
+
+}

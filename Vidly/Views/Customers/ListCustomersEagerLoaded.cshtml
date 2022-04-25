@@ -1,0 +1,62 @@
+﻿<!--
+
+ListCustomers [CONTROLLER ACTION] = ListCustomers [VIEW]
+
+-->
+
+
+
+@model IEnumerable<Vidly.Models.Customer>
+
+
+<!--
+
+    IEnumerable enables generating a list from database records
+
+
+    //https://stackoverflow.com/questions/22483456/does-not-contain-a-public-definition-for-getenumerator-in-mvc
+
+-->
+
+
+@{
+    ViewBag.Title = "List Customers and Related Data";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List of Customers from DB and Related Data</h2>
+
+
+
+
+<table>
+
+    <thead>
+        <tr>
+        <th>ID</th><td>Customer Name</td><td>Has Subscription?</td>
+        <td>MembershipTypeID</td><td>Discount Rate</td>
+        <td>DETAILS</td>
+        </tr>
+    </thead>
+
+
+    @foreach (var customer in Model)
+    {   
+        <tr>
+
+        <td>@customer.CustomerID</td> <td>@customer.CustomerName</td>
+        <td>@customer.IsSubscribedToNewsletter</td>
+        <td>@customer.MembershipTypeID</td>
+        <td>@customer.HasAMembershipType.DiscountRate</td>
+        <td><a href="/Customers/CustomerDetails/@customer.CustomerID">[DETAILS]</a></td>
+
+        </tr>     
+    }
+
+
+
+
+
+
+</table>
+

@@ -1,0 +1,56 @@
+﻿@model Vidly.ViewModels.AddMembershipTypeViewModel
+
+
+@{
+    ViewBag.Title = "AddMembershipType";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add a Membership Type for Customers to Choose From</h2>
+
+<h3>Use the Form Provided Below:</h3>
+
+@using (Html.BeginForm("CreateMembershipType", "MembershipTypes", FormMethod.Post))
+{
+
+    @*<div class="form-group">
+            @Html.LabelFor(m => m.ASingleMembershipType.MembershipTypeID)
+            @Html.TextBoxFor(m => m.ASingleMembershipType.MembershipTypeID, new { @class = "form-control" })
+        </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ASingleMembershipType.MembershipName)
+        @Html.TextBoxFor(m => m.ASingleMembershipType.MembershipName, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ASingleMembershipType.RegistrationFee)
+        @Html.TextBoxFor(m => m.ASingleMembershipType.RegistrationFee, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ASingleMembershipType.SubscriptionDuration)
+        @Html.TextBoxFor(m => m.ASingleMembershipType.SubscriptionDuration, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ASingleMembershipType.DiscountRate)
+        @Html.TextBoxFor(m => m.ASingleMembershipType.DiscountRate, new { @class = "form-control" })
+    </div>
+
+    @*<button type="submit" class="btn btn-primary" id="CreateMembershipType" value="CreateMembershipType">SUBMIT</button>*@
+
+    <input type="submit" value="Submit">
+
+}
+
+
+
+
+
+
+
+
+
+
+

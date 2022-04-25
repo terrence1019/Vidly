@@ -1,0 +1,38 @@
+﻿<!-- The Views page is a mix of C# code and HTML/CSS: hence the name CSHTML -->
+<!-- The "at" symbol enables C# code -->
+<!--
+
+
+[CREATING VIEWS] STEP 01:
+Controller Action Name MUST EQUAL View Name
+
+CustomerSample() [CONTROLLER] = CustomerSample [VIEW]
+
+
+[CREATING VIEWS] STEP 02:
+The View must identify the Model or ViewModel it is using
+
+Identifies what Project, Namespace, and Classes for the Model we are using
+@*Syntax: @model ProjectName.Namespace.Class*@
+
+
+
+
+
+-->
+@model Vidly.ViewModels.CustomerSampleViewModel
+@using System;
+
+@{
+    ViewBag.Title = "Customer Sample";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>Customer Sample</h2>
+
+@foreach (var customer in Model.ListOfCustomers)
+{
+    <li>@customer.CustomerName</li>
+}

@@ -1,0 +1,21 @@
+﻿<!-- The Views page is a mix of C# code and HTML/CSS: hence the name CSHTML -->
+<!-- Identifies what Namespace and Classes for the Model we are using -->
+@model Vidly.Models.Movie
+@using System
+
+
+<!-- Relates to the Controller. In this case: MoviesController-->
+<!-- View name == Action name in respective Controller -->
+<!-- In this case: Randomizer() action from MoviesController -->
+@{
+    ViewBag.Title = "Randomizer: An Unexpected Movie Choice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Randomizer: A Random Movie To Check Out!</h2>
+
+<h3>
+    Today's pick is.....
+    <span style="background-color:firebrick;color:black">@Model.MovieName</span>!
+</h3>
+
