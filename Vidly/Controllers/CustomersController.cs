@@ -148,20 +148,47 @@ namespace Vidly.Controllers
         //This is called Model Binding
 
         [HttpPost]
-        public ActionResult CreateCustomer(AddCustomerViewModel customer)
+        public ActionResult CreateCustomer(Customer customer)
         {
 
+            //CRITICAL NOTE: IN ORDER TO AUTOMATICALLY MAP THE CUSTOMER IN VIEWMODEL TO CUSTOMER IN MODEL,
+            //THE FIELD NAME MUST BE CUSTOMER IN THE VIEWMODEL!
+            //This way, AddCustomerViewModel.Customer.CustomerName == Customer.CustomerName
 
-            var a = customer.Customer.CustomerName;
+            
+            var a = customer.CustomerName;
+            var b = customer.IsSubscribedToNewsletter;
+            var c = customer.MembershipTypeID;
 
+            
 
             var customerTable = dbContext.customerDB;
+
+            /*
+            customer.CustomerID = customerTable.Count() + 1;
+
+            Assign CustomerID by: getting CustomerID of Previous Record + 1
+
+
+
+            */
+            int max = -500;
+
+            foreach (var record in customerTable)
+            {
+                if (record.CustomerID > max)
+                    max = record.CustomerID;
+            }
+
+            customer.CustomerID = max + 1;
+
+            Console.WriteLine();
             customerTable.Add(customer);
-            //dbContext.SaveChanges();
+            dbContext.SaveChanges();
 
 
 
-            ////Return to /Customers/ListCustomers after changes implemented
+            //Return to /Customers/ListCustomers after changes implemented
             return RedirectToAction("ListCustomers", "Customers");
 
             //return View();

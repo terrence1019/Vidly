@@ -26,6 +26,15 @@ Html.BeginForm("ActionName", "ControllerName")
 @using (Html.BeginForm("CreateCustomer", "Customers", FormMethod.Post))
 {
 
+    <!-- 
+        
+        //CRITICAL NOTE: IN ORDER TO AUTOMATICALLY MAP THE CUSTOMER IN VIEWMODEL TO CUSTOMER IN MODEL,
+        //THE FIELD NAME MUST BE CUSTOMER IN THE VIEWMODEL!
+        //This way, AddCustomerViewModel.Customer.CustomerName == Customer.CustomerName
+        
+    -->
+
+
     <!-- Special markup and class applied to form fields to ensure proper rendering -->
     <!-- TEXT FIELD -->
     <div class="form-group">
@@ -58,8 +67,8 @@ Html.BeginForm("ActionName", "ControllerName")
 
     //Model Binding:
     //Adding a button to save all Form input
-    <button type="submit" class="btn btn-primary" id ="CreateCustomer" value="CreateCustomer">Save</button>
+    <button type="submit" class="btn btn-primary" id="CreateCustomer" value="CreateCustomer">Save</button>
 
-    
+
 
 }

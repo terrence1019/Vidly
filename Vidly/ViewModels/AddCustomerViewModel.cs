@@ -16,6 +16,10 @@ namespace Vidly.ViewModels
         //Since a View can only use one Model at a time, we can create a ViewModel and
         //use "using ProjectName.Models" to get additional Models.
         //We can then add a field to the ViewModel with the desired fields from the other Models
+        
+        //CRITICAL NOTE: IN ORDER TO AUTOMATICALLY MAP THE CUSTOMER IN VIEWMODEL TO CUSTOMER IN MODEL,
+        //THE FIELD NAME MUST BE CUSTOMER IN THE VIEWMODEL!
+        //This way, AddCustomerViewModel.Customer.CustomerName == Customer.CustomerName
         public Customer Customer { get; set; }
 
     }
