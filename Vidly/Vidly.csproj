@@ -178,6 +178,14 @@
     <Compile Include="Migrations\202204251422533_ModifyMembershipTypesRecords.designer.cs">
       <DependentUpon>202204251422533_ModifyMembershipTypesRecords.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205051429054_AddPersonalDB.cs" />
+    <Compile Include="Migrations\202205051429054_AddPersonalDB.designer.cs">
+      <DependentUpon>202205051429054_AddPersonalDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205110033081_dbCheck.cs" />
+    <Compile Include="Migrations\202205110033081_dbCheck.designer.cs">
+      <DependentUpon>202205110033081_dbCheck.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -289,6 +297,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204251422533_ModifyMembershipTypesRecords.resx">
       <DependentUpon>202204251422533_ModifyMembershipTypesRecords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205051429054_AddPersonalDB.resx">
+      <DependentUpon>202205051429054_AddPersonalDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205110033081_dbCheck.resx">
+      <DependentUpon>202205110033081_dbCheck.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -127,13 +127,18 @@ namespace Vidly.Controllers
         public ActionResult AddCustomer2()
         {
             //USED TO CREATE THE DROPDOWN LIST
-            var membershipTypesDBRecords = dbContext.membershipTypeDB.ToList();
-            var addCustomerViewModel = new AddCustomerViewModel
+
+            //STEP 01: take ALL records from the MembershipType Table and make a list
+            IEnumerable<MembershipType> membershiptype_list = dbContext.membershipTypeDB.ToList();
+
+            //STEP 02: add the list of Membership Types to the ViewModel
+            var dropdownlist = new AddCustomerViewModel
             {
-                ListOfMembershipTypes = membershipTypesDBRecords
+                ListOfMembershipTypes = membershiptype_list
             };
 
-            return View(addCustomerViewModel);
+            //The View is returned with the Dropdown list
+            return View(dropdownlist);
         }
 
         //FORM 02: Action for Model Binding
@@ -143,18 +148,23 @@ namespace Vidly.Controllers
         //This is called Model Binding
 
         [HttpPost]
-        public ActionResult CreateCustomer(Customer customer)
+        public ActionResult CreateCustomer(AddCustomerViewModel customer)
         {
 
-            dbContext.customerDB.Add(customer);
-            dbContext.SaveChanges();
+
+            var a = customer.Customer.CustomerName;
+
+
+            var customerTable = dbContext.customerDB;
+            customerTable.Add(customer);
+            //dbContext.SaveChanges();
 
 
 
             ////Return to /Customers/ListCustomers after changes implemented
-            //return RedirectToAction("ListCustomers", "Customers");
+            return RedirectToAction("ListCustomers", "Customers");
 
-            return View();
+            //return View();
         }
     }
 }

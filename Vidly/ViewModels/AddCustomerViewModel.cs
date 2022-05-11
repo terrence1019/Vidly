@@ -16,7 +16,7 @@ namespace Vidly.ViewModels
         //Since a View can only use one Model at a time, we can create a ViewModel and
         //use "using ProjectName.Models" to get additional Models.
         //We can then add a field to the ViewModel with the desired fields from the other Models
-        public Customer ASingleCustomer { get; set; }
+        public Customer Customer { get; set; }
 
     }
 }

@@ -36,23 +36,23 @@ Html.BeginForm("ActionName", "ControllerName")
             we need to prefix ASingleCustomer to the fields related to Customer model.
             The field ASingleCustomer is found in the Vidly.ViewModels.AddCustomerViewModel model
         -->
-        @Html.LabelFor(m => m.ASingleCustomer.CustomerName)
-        @Html.TextBoxFor(m => m.ASingleCustomer.CustomerName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.ASingleCustomer.CustomerName)
+        @Html.LabelFor(c => c.Customer.CustomerName)
+        @Html.TextBoxFor(c => c.Customer.CustomerName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Customer.CustomerName)
     </div>
     <br />
     <!-- CHECKBOX -->
     <div class="checkbox">
         <label>
-            @Html.CheckBoxFor(m => m.ASingleCustomer.IsSubscribedToNewsletter) Subscribed to Newsletter?
+            @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter) Subscribed to Newsletter?
         </label>
     </div>
     <br />
     <!-- DROPDOWN -->
     <div class="form-group">
-        @Html.LabelFor(m => m.ASingleCustomer.MembershipTypeID)
-        @Html.DropDownListFor(m => m.ASingleCustomer.MembershipTypeID, new SelectList(Model.ListOfMembershipTypes, "MembershipTypeID", "MembershipName"), "Select Membership from below", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.ASingleCustomer.MembershipTypeID)
+        @Html.LabelFor(m => m.Customer.MembershipTypeID)
+        @Html.DropDownListFor(m => m.Customer.MembershipTypeID, new SelectList(Model.ListOfMembershipTypes, "MembershipTypeID", "MembershipName"), "Select Membership from below", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.MembershipTypeID)
     </div>
     <br />
 
