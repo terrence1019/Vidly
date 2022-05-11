@@ -89,11 +89,22 @@ namespace Vidly.Controllers
             //use the Include() method [Requires using System.Data.Entity]
             var customersDBRecords = dbContext.customerDB.Include(c => c.HasAMembershipType);
 
-            if (customersDBRecords == null) return View("NO DATA");
+            if (customersDBRecords == null) return View("ListCustomers");
 
             return View(customersDBRecords);
         }
-        
+
+        public ViewResult ListCustomersEditable()
+        {
+            //To load Customer table AND related tables together (Eager Loading),
+            //use the Include() method [Requires using System.Data.Entity]
+            var customersDBRecords = dbContext.customerDB.Include(c => c.HasAMembershipType);
+
+            if (customersDBRecords == null) return View("ListCustomers");
+
+            return View(customersDBRecords);
+        }
+
 
         //[QUERRYING A DATABASE] STEP 04:
         //CONTROLLER ACTION: Create methods for showing Customer Details based on CustomerID
@@ -115,6 +126,18 @@ namespace Vidly.Controllers
         }
 
 
+        [Route("Customers/CustomerDetailsEditable/{customerID}")]
+        public ActionResult CustomerDetailsEditable(int customerID)
+        {
+            var customersDBRecords = dbContext.customerDB.SingleOrDefault(c => c.CustomerID == customerID);
+
+            if (customersDBRecords == null) return HttpNotFound();
+
+            return View(customersDBRecords);
+        }
+
+
+
 
         //FORM ACTIONS
         //FORM 01: Text Field and Checkbox
@@ -132,7 +155,7 @@ namespace Vidly.Controllers
             IEnumerable<MembershipType> membershiptype_list = dbContext.membershipTypeDB.ToList();
 
             //STEP 02: add the list of Membership Types to the ViewModel
-            var dropdownlist = new AddCustomerViewModel
+            var dropdownlist = new CustomerViewModel
             {
                 ListOfMembershipTypes = membershiptype_list
             };
@@ -140,6 +163,38 @@ namespace Vidly.Controllers
             //The View is returned with the Dropdown list
             return View(dropdownlist);
         }
+
+
+        [Route("Customers/EditCustomer/{custid}")]
+        public ActionResult EditCustomer(int custid)
+        {
+
+            //Get Customer from Database with the correlated customerid
+
+            //Step 01: Pull up Customer Table
+            var customerTable = dbContext.customerDB;
+
+            //Step 02: Find record with matching customerid value
+            var customer = customerTable.SingleOrDefault(c => c.CustomerID == custid);
+
+            //if no customer found with the matching customerid value:
+            if (customer == null) HttpNotFound();
+
+            //Since Customer records were added using AddCustomerViewModel,
+            //we need to use that for editing:
+            var customerVM = new CustomerViewModel
+            {
+                Customer = customer,
+                ListOfMembershipTypes = dbContext.membershipTypeDB.ToList()
+                //var membershiptypesTable = dbContext.membershipTypeDB
+            };
+
+
+            //View is returned with Edit Form and instance of ViewModel
+            return View("EditCustomer", customerVM);
+
+        }
+
 
         //FORM 02: Action for Model Binding
         //Action correlates to the form's Submit Button in the AddCustomer2 View
@@ -153,7 +208,7 @@ namespace Vidly.Controllers
 
             //CRITICAL NOTE: IN ORDER TO AUTOMATICALLY MAP THE CUSTOMER IN VIEWMODEL TO CUSTOMER IN MODEL,
             //THE FIELD NAME MUST BE CUSTOMER IN THE VIEWMODEL!
-            //This way, AddCustomerViewModel.Customer.CustomerName == Customer.CustomerName
+            //This way, CustomerViewModel.Customer.CustomerName == Customer.CustomerName
 
             
             var a = customer.CustomerName;
@@ -190,8 +245,12 @@ namespace Vidly.Controllers
 
             //Return to /Customers/ListCustomers after changes implemented
             return RedirectToAction("ListCustomers", "Customers");
-
-            //return View();
+            
         }
+
+        
+
+
+
     }
 }

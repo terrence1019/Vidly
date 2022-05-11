@@ -7,7 +7,7 @@ using Vidly.Models;
 
 namespace Vidly.ViewModels
 {
-    public class AddCustomerViewModel
+    public class CustomerViewModel
     {   
         //IEnumerable supports simple iteration over a collection of a specific type,
         //e.g., a list of Customer records, a list of MembershipType column values, etc.

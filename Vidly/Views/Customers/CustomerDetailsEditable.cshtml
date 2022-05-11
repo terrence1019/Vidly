@@ -1,0 +1,52 @@
+﻿
+<style>
+
+    #customer_details
+    {
+        width: 700px;
+        text-align: left;
+        vertical-align: text-top;
+    }
+
+</style>
+
+
+
+@model Vidly.Models.Customer
+
+
+@{
+    ViewBag.Title = "CustomerDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customer Details for @Model.CustomerName</h2>
+
+
+<table id="customer_details" cellspacing="50">
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Has Subscription?</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        <tr>
+                <td>@Model.CustomerID</td>
+                <td>@Model.CustomerName</td>
+                <td>@Model.IsSubscribedToNewsletter</td>
+        </tr>
+
+
+    </tbody>
+
+</table>
+
+<br />
+<br />
+
+<p><a href="/Customers/ListCustomersEditable">[BACK TO CUSTOMERS]</a></p>

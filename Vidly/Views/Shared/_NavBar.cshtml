@@ -26,13 +26,15 @@
                 <li>@Html.ActionLink("Movie Rental Customer List", "MovieRentalCustomerList", "Movies")</li>
 
                 <!-- Application Structure: Views/Customers/ListCustomers -->
-                <li>@Html.ActionLink("Customers", "ListCustomers", "Customers")</li>
+                <li>@Html.ActionLink("Customers List [Read-Only]", "ListCustomers", "Customers")</li>
+
+                <li>@Html.ActionLink("Customers List [Editable]", "ListCustomersEditable", "Customers")</li>
 
                 <li>@Html.ActionLink("Add A Customer", "AddCustomer2", "Customers")</li>
 
-                <li>@Html.ActionLink("Membership Types", "ListMembershipTypes", "MembershipTypes")</li>
+                <li>@Html.ActionLink("Membership Types Available", "ListMembershipTypes", "MembershipTypes")</li>
 
-                <li>@Html.ActionLink("Add A Membership Type", "AddMembershipType", "MembershipTypes")</li>
+                <li>@Html.ActionLink("Add A New Membership Type", "AddMembershipType", "MembershipTypes")</li>
 
             </ul>
         </div>
