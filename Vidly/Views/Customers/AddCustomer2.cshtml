@@ -23,15 +23,15 @@ Html.BeginForm("ActionName", "ControllerName")
 
 -->
 
-@using (Html.BeginForm("CreateCustomer", "Customers", FormMethod.Post))
+@using (Html.BeginForm("CreateCustomerForm", "Customers", FormMethod.Post))
 {
 
-    <!-- 
-        
+    <!--
+
         //CRITICAL NOTE: IN ORDER TO AUTOMATICALLY MAP THE CUSTOMER IN VIEWMODEL TO CUSTOMER IN MODEL,
         //THE FIELD NAME MUST BE CUSTOMER IN THE VIEWMODEL!
         //This way, CustomerViewModel.Customer.CustomerName == Customer.CustomerName
-        
+
     -->
 
 
@@ -64,6 +64,7 @@ Html.BeginForm("ActionName", "ControllerName")
         @Html.ValidationMessageFor(m => m.Customer.MembershipTypeID)
     </div>
     <br />
+
 
     //Model Binding:
     //Adding a button to save all Form input

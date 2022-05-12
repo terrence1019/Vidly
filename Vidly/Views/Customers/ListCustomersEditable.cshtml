@@ -49,10 +49,11 @@ ListCustomers [CONTROLLER ACTION] = ListCustomers [VIEW]
     <td><a href="/Customers/CustomerDetailsEditable/@customer.CustomerID">[DETAILS]</a></td>
 
 
-
     <!-- EDIT ACTION-->
-    <td>@Html.ActionLink("[EDIT", "EditCustomer", "Customers", new { custid = customer.CustomerID })</td>
-    <td><a href="/Customers/EditCustomer/@customer.CustomerID">[EDIT]</a></td>
+    <!-- Using ActionLinks: navigate to the same controller's action method -->
+    <!-- https://www.c-sharpcorner.com/UploadFile/abhikumarvatsa/ajax-actionlink-and-html-actionlink-in-mvc/ -->
+    <!-- (Link Text, Action Name, Router Argument)-->
+    <td>@Html.ActionLink("[EDIT]", "EditCustomer", new { custid = customer.CustomerID })</td>
 </tr>
     }
 

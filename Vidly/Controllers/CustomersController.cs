@@ -137,7 +137,7 @@ namespace Vidly.Controllers
         }
 
 
-
+        //PART 01: CREATING CUSTOMER RECORDS
 
         //FORM ACTIONS
         //FORM 01: Text Field and Checkbox
@@ -165,6 +165,61 @@ namespace Vidly.Controllers
         }
 
 
+        //FORM 02: Action for Model Binding
+        //Action correlates to the form's Submit Button in the AddCustomer2 View
+        //Action Name == Form Name
+        //EF will automatically map request data to the specified model used (Customer).
+        //This is called Model Binding
+
+        [HttpPost]
+        public ActionResult CreateCustomerForm(Customer customer)
+        {
+
+            //CRITICAL NOTE: IN ORDER TO AUTOMATICALLY MAP THE CUSTOMER IN VIEWMODEL TO CUSTOMER IN MODEL,
+            //THE FIELD NAME MUST BE CUSTOMER IN THE VIEWMODEL!
+            //This way, CustomerViewModel.Customer.CustomerName == Customer.CustomerName
+
+
+            var a = customer.CustomerName;
+            var b = customer.IsSubscribedToNewsletter;
+            var c = customer.MembershipTypeID;
+
+
+
+            var customerTable = dbContext.customerDB;
+
+            /*
+            customer.CustomerID = customerTable.Count() + 1;
+            Assign CustomerID by: getting CustomerID of Previous Record + 1
+            */
+            int max = -500;
+
+            foreach (var record in customerTable)
+            {
+                if (record.CustomerID > max)
+                    max = record.CustomerID;
+            }
+
+            customer.CustomerID = max + 1;
+
+            //Console.WriteLine();
+            customerTable.Add(customer);
+            dbContext.SaveChanges();
+
+
+
+            //Return to /Customers/ListCustomers after changes implemented
+            return RedirectToAction("ListCustomers", "Customers");
+
+        }
+
+
+        //PART 02: EDITING CUSTOMER RECORDS
+
+
+        //THIS ACTION GETS THE CUSTOMER DATA FROM THE TABLE
+        //Since the Form for creating a Customer used a CustomerViewModel,
+        //a CustomerViewModel has to be returned through the View
         [Route("Customers/EditCustomer/{custid}")]
         public ActionResult EditCustomer(int custid)
         {
@@ -177,10 +232,10 @@ namespace Vidly.Controllers
             //Step 02: Find record with matching customerid value
             var customer = customerTable.SingleOrDefault(c => c.CustomerID == custid);
 
-            //if no customer found with the matching customerid value:
+            //If no customer found with the matching customerid value:
             if (customer == null) HttpNotFound();
 
-            //Since Customer records were added using AddCustomerViewModel,
+            //Since Customer records were added using CustomerViewModel,
             //we need to use that for editing:
             var customerVM = new CustomerViewModel
             {
@@ -190,20 +245,16 @@ namespace Vidly.Controllers
             };
 
 
-            //View is returned with Edit Form and instance of ViewModel
+            //View is returned with Edit Customer Page and instance of ViewModel
             return View("EditCustomer", customerVM);
 
         }
 
 
-        //FORM 02: Action for Model Binding
-        //Action correlates to the form's Submit Button in the AddCustomer2 View
-        //Action Name == Form Name
-        //EF will automatically map request data to the specified model used (Customer).
-        //This is called Model Binding
+        
 
         [HttpPost]
-        public ActionResult CreateCustomer(Customer customer)
+        public ActionResult EditCustomerForm(Customer customer)
         {
 
             //CRITICAL NOTE: IN ORDER TO AUTOMATICALLY MAP THE CUSTOMER IN VIEWMODEL TO CUSTOMER IN MODEL,
@@ -219,32 +270,25 @@ namespace Vidly.Controllers
 
             var customerTable = dbContext.customerDB;
 
-            /*
-            customer.CustomerID = customerTable.Count() + 1;
+            
+            //UPDATE DATABASE RECORD USING FORM DATA SENT TO ACTION PARAMETERS:
+            //STEP 01: Get Target Customer to be Updated with data from Edit Form
+            var targetCustomer = customerTable.Single(x => x.CustomerID == customer.CustomerID);
 
-            Assign CustomerID by: getting CustomerID of Previous Record + 1
+
+            //STEP 02: Manually assign method arguments to update field values of the record
+            targetCustomer.CustomerName = customer.CustomerName;
+            targetCustomer.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+            targetCustomer.MembershipTypeID = customer.MembershipTypeID;
 
 
-
-            */
-            int max = -500;
-
-            foreach (var record in customerTable)
-            {
-                if (record.CustomerID > max)
-                    max = record.CustomerID;
-            }
-
-            customer.CustomerID = max + 1;
-
-            Console.WriteLine();
-            customerTable.Add(customer);
+            //STEP 03: Save Changes to Vidly Database
             dbContext.SaveChanges();
 
 
 
-            //Return to /Customers/ListCustomers after changes implemented
-            return RedirectToAction("ListCustomers", "Customers");
+            //Return to /Customers/ListCustomersEditable after changes implemented
+            return RedirectToAction("ListCustomersEditable", "Customers");
             
         }
 
