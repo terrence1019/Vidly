@@ -175,6 +175,37 @@ namespace Vidly.Controllers
         public ActionResult CreateCustomerForm(Customer customer)
         {
 
+
+            //VALIDATNG DATA SENT TO FROM SUBMISSION FORM TO CONTROLLER
+            //ModelState.IsValid
+            //IsValid is a property
+
+
+            /*
+             * ModelState. IsValid indicates if it was possible to bind the incoming values
+             * from the request to the model correctly and whether any explicitly specified validation rules
+             * were broken during the model binding process.
+             * 
+             */
+
+            if (!ModelState.IsValid)
+            {
+
+                //If object parameters submitted from form input fields to controller are invalid,
+                //return the object to form page for correction using the appropriate Model used on the page
+                //AddCustomer2 page uses the CustomerViewModel for submitting input fields to controller
+                var customerVM = new CustomerViewModel
+                {
+                    Customer = customer,
+                    ListOfMembershipTypes = dbContext.membershipTypeDB.ToList()
+                };
+                return View("AddCustomer2", customerVM);
+            }
+
+
+
+
+
             //CRITICAL NOTE: IN ORDER TO AUTOMATICALLY MAP THE CUSTOMER IN VIEWMODEL TO CUSTOMER IN MODEL,
             //THE FIELD NAME MUST BE CUSTOMER IN THE VIEWMODEL!
             //This way, CustomerViewModel.Customer.CustomerName == Customer.CustomerName
@@ -256,6 +287,35 @@ namespace Vidly.Controllers
         [HttpPost]
         public ActionResult EditCustomerForm(Customer customer)
         {
+
+            //VALIDATNG DATA SENT TO FROM SUBMISSION FORM TO CONTROLLER
+            //ModelState.IsValid
+            //IsValid is a property
+
+
+            /*
+             * ModelState. IsValid indicates if it was possible to bind the incoming values
+             * from the request to the model correctly and whether any explicitly specified validation rules
+             * were broken during the model binding process.
+             * 
+             */
+
+            if (!ModelState.IsValid)
+            {
+
+                //If object parameters submitted from form input fields to controller are invalid,
+                //return the object to form page for correction using the appropriate Model used on the page
+                //EditCustomer page uses the CustomerViewModel for submitting input fields to controller
+                var customerVM = new CustomerViewModel
+                {
+                    Customer = customer,
+                    ListOfMembershipTypes = dbContext.membershipTypeDB.ToList()
+                };
+                return View("EditCustomer", customerVM);
+            }
+
+
+
 
             //CRITICAL NOTE: IN ORDER TO AUTOMATICALLY MAP THE CUSTOMER IN VIEWMODEL TO CUSTOMER IN MODEL,
             //THE FIELD NAME MUST BE CUSTOMER IN THE VIEWMODEL!

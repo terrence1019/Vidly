@@ -47,7 +47,9 @@ Html.BeginForm("ActionName", "ControllerName")
         -->
         @Html.LabelFor(c => c.Customer.CustomerName)
         @Html.TextBoxFor(c => c.Customer.CustomerName, new { @class = "form-control" })
+        <!-- Validation Mechanisms -->
         @Html.ValidationMessageFor(c => c.Customer.CustomerName)
+        
     </div>
     <br />
     <!-- CHECKBOX -->

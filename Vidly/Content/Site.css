@@ -22,3 +22,38 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* Add field-validation-error class */
+.field-validation-error {
+    color: red;
+}
+
+
+/* Add input-validation-error form-control */
+.input-validation-error.form-control
+{
+    background-color: papayawhip;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
