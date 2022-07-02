@@ -26,6 +26,12 @@ Html.BeginForm("ActionName", "ControllerName")
 @using (Html.BeginForm("CreateCustomerForm", "Customers", FormMethod.Post))
 {
 
+    @Html.ValidationSummary()
+    <!-- VALIDATION SUMMARY PROVIDES INFORMATION ON FIELD REQUIREMENTS -->
+    <!-- https://www.tutorialsteacher.com/mvc/htmlhelper-validationsummary -->
+
+
+
     <!--
 
         //CRITICAL NOTE: IN ORDER TO AUTOMATICALLY MAP THE CUSTOMER IN VIEWMODEL TO CUSTOMER IN MODEL,
@@ -33,7 +39,6 @@ Html.BeginForm("ActionName", "ControllerName")
         //This way, CustomerViewModel.Customer.CustomerName == Customer.CustomerName
 
     -->
-
 
     <!-- Special markup and class applied to form fields to ensure proper rendering -->
     <!-- TEXT FIELD -->
@@ -50,7 +55,15 @@ Html.BeginForm("ActionName", "ControllerName")
         @Html.ValidationMessageFor(c => c.Customer.CustomerName)
     </div>
     <br />
+    <!-- DATE FIELD -->
+    <div class="form-group">
+        @Html.LabelFor(c => c.Customer.BirthDate)
+        @Html.TextBoxFor(c => c.Customer.BirthDate, new { @class = "form-control"})
+        @Html.ValidationMessageFor(c => c.Customer.BirthDate)
+    </div>
+    <br />
     <!-- CHECKBOX -->
+
     <div class="checkbox">
         <label>
             @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter) Subscribed to Newsletter?

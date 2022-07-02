@@ -1,10 +1,11 @@
 ﻿@model Vidly.ViewModels.CustomerViewModel
 @{
-    ViewBag.Title = "AddCustomer2";
+    ViewBag.Title = "EditCustomer";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add Customer including MembershipType</h2>
+
+<h2>Edit Customer including MembershipType</h2>
 
 <!--
     Since we are using Vidly.ViewModels.AddCustomerViewModel as the model, we need to prefix Customer to the fields
@@ -26,6 +27,11 @@ Html.BeginForm("ActionName", "ControllerName")
 @using (Html.BeginForm("EditCustomerForm", "Customers", FormMethod.Post))
 {
 
+    <!-- VALIDATION SUMMARY PROVIDES INFORMATION ON FIELD REQUIREMENTS -->
+    <!-- https://www.c-sharpcorner.com/article/validation-message-and-validation-summary-in-asp-net-mvc/ -->
+    @Html.ValidationSummary(false, "Please fix the following error(s) and then submit the form")
+
+
     <!--
 
         //CRITICAL NOTE: IN ORDER TO AUTOMATICALLY MAP THE CUSTOMER IN VIEWMODEL TO CUSTOMER IN MODEL,
@@ -38,6 +44,7 @@ Html.BeginForm("ActionName", "ControllerName")
     <!-- Special markup and class applied to form fields to ensure proper rendering -->
     <!-- TEXT FIELD -->
     <div class="form-group">
+
         <!-- Inside this we need a 1) Label and 2) an Input field: -->
         <!-- For this field, we use HTML helper code -->
         <!-- Lambda expression to identify Field from Customer model -->
@@ -49,7 +56,16 @@ Html.BeginForm("ActionName", "ControllerName")
         @Html.TextBoxFor(c => c.Customer.CustomerName, new { @class = "form-control" })
         <!-- Validation Mechanisms -->
         @Html.ValidationMessageFor(c => c.Customer.CustomerName)
-        
+
+    </div>
+    <br />
+    <!-- DATE FIELD -->
+    <div class="form-group">
+        @Html.LabelFor(c => c.Customer.BirthDate)
+        <!-- FORMATTING DATETIME IN INPUT FIELD: -->
+        <!-- https://stackoverflow.com/questions/1961114/date-only-from-textboxfor-->
+        @Html.TextBoxFor(c => c.Customer.BirthDate, "{0:yyyy-MM-dd}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Customer.BirthDate)
     </div>
     <br />
     <!-- CHECKBOX -->

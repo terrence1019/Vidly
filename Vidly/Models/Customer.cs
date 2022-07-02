@@ -34,5 +34,12 @@ namespace Vidly.Models
         [Display(Name = "Customer Membership Type")]
         public byte MembershipTypeID { get; set; }
 
+        //https://www.c-sharpcorner.com/UploadFile/4b0136/perform-data-annotation-in-Asp-Net-mvc-5/
+        //https://stackoverflow.com/questions/5252979/assign-format-of-datetime-with-data-annotations
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Birth Date yyyy-MM-dd")]
+        public DateTime? BirthDate { get; set; }
+
     }
 }

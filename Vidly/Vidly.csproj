@@ -186,6 +186,22 @@
     <Compile Include="Migrations\202205110033081_dbCheck.designer.cs">
       <DependentUpon>202205110033081_dbCheck.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202207021544463_AddBirthdate.cs" />
+    <Compile Include="Migrations\202207021544463_AddBirthdate.designer.cs">
+      <DependentUpon>202207021544463_AddBirthdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207021552431_BirthDateFieldImprovements.cs" />
+    <Compile Include="Migrations\202207021552431_BirthDateFieldImprovements.designer.cs">
+      <DependentUpon>202207021552431_BirthDateFieldImprovements.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207021556554_ModifyBirthdate.cs" />
+    <Compile Include="Migrations\202207021556554_ModifyBirthdate.designer.cs">
+      <DependentUpon>202207021556554_ModifyBirthdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207021613059_BirthDateModification.cs" />
+    <Compile Include="Migrations\202207021613059_BirthDateModification.designer.cs">
+      <DependentUpon>202207021613059_BirthDateModification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -306,6 +322,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205110033081_dbCheck.resx">
       <DependentUpon>202205110033081_dbCheck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207021544463_AddBirthdate.resx">
+      <DependentUpon>202207021544463_AddBirthdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207021552431_BirthDateFieldImprovements.resx">
+      <DependentUpon>202207021552431_BirthDateFieldImprovements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207021556554_ModifyBirthdate.resx">
+      <DependentUpon>202207021556554_ModifyBirthdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207021613059_BirthDateModification.resx">
+      <DependentUpon>202207021613059_BirthDateModification.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

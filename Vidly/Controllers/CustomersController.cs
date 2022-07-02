@@ -214,6 +214,7 @@ namespace Vidly.Controllers
             var a = customer.CustomerName;
             var b = customer.IsSubscribedToNewsletter;
             var c = customer.MembershipTypeID;
+            var d = customer.BirthDate;
 
 
 
@@ -325,8 +326,8 @@ namespace Vidly.Controllers
             var a = customer.CustomerName;
             var b = customer.IsSubscribedToNewsletter;
             var c = customer.MembershipTypeID;
+            var d = customer.BirthDate;
 
-            
 
             var customerTable = dbContext.customerDB;
 
@@ -340,6 +341,7 @@ namespace Vidly.Controllers
             targetCustomer.CustomerName = customer.CustomerName;
             targetCustomer.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
             targetCustomer.MembershipTypeID = customer.MembershipTypeID;
+            targetCustomer.BirthDate = customer.BirthDate;
 
 
             //STEP 03: Save Changes to Vidly Database
