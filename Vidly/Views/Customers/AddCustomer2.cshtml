@@ -58,7 +58,7 @@ Html.BeginForm("ActionName", "ControllerName")
     <!-- DATE FIELD -->
     <div class="form-group">
         @Html.LabelFor(c => c.Customer.BirthDate)
-        @Html.TextBoxFor(c => c.Customer.BirthDate, new { @class = "form-control"})
+        @Html.TextBoxFor(c => c.Customer.BirthDate, new { @class = "form-control" })
         @Html.ValidationMessageFor(c => c.Customer.BirthDate)
     </div>
     <br />
@@ -79,10 +79,23 @@ Html.BeginForm("ActionName", "ControllerName")
     <br />
 
 
+    //Anti-Forgery Token: Prevents Cross-Site Request Forgery
+    @Html.AntiForgeryToken()
+
     //Model Binding:
     //Adding a button to save all Form input
     <button type="submit" class="btn btn-primary" id="CreateCustomer" value="CreateCustomer">Save</button>
 
 
+
+}
+
+
+
+<!-- AT END OF PAGE, ADD CLIENT-SIDE VALIDATION -->
+@section scripts
+{
+
+    @Scripts.Render("~/bundles/jqueryval")
 
 }

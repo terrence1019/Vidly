@@ -30,11 +30,30 @@ using System.Data.Entity;
 // In this case:
 // Enable-Migrations -ProjectName Vidly -ContextTypeName MyDbContext
 
+
+//NAMESPACES REQUIRED FOR AUTHENTICATION AND AUTHORIZATION
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin;
+using Microsoft.Owin.Security.Cookies;
+using Owin;
+
+using Vidly.Identification;
+
+
 namespace Vidly.Models
 {
-    public class MyDbContext : DbContext
+    //[OLD VERSION WITHOUT AUTHENTICATION/AUTHORIZATION]
+    //public class MyDbContext : DbContext 
+
+    //[NEW VERSION WITH AUTHENTICATION/AUTHORIZATION]
+    public class MyDbContext : IdentityDbContext <AppUser>
     {
-        public MyDbContext()
+        //USE YOUR OWN DESIRED DB OVER DEFAULT CONNECTION
+        //https://stackoverflow.com/questions/61107420/how-can-i-make-visual-studio-use-my-database-instead-of-the-mdf-file-located-in
+        public MyDbContext() : base("Vidly.Models.MyDbContext")
         {
         }
 

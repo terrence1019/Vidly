@@ -172,6 +172,7 @@ namespace Vidly.Controllers
         //This is called Model Binding
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateCustomerForm(Customer customer)
         {
 
@@ -286,6 +287,7 @@ namespace Vidly.Controllers
         
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult EditCustomerForm(Customer customer)
         {
 

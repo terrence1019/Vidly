@@ -85,6 +85,9 @@ Html.BeginForm("ActionName", "ControllerName")
 
     @Html.HiddenFor(m => m.Customer.CustomerID)
 
+    //Anti-Forgery Token: Prevents Cross-Site Request Forgery
+    @Html.AntiForgeryToken()
+
     //Model Binding:
     //Adding a button to save all Form input
     <button type="submit" class="btn btn-primary" id="CreateCustomer" value="CreateCustomer">Save</button>

@@ -38,8 +38,8 @@ namespace Vidly.Models
         //https://stackoverflow.com/questions/5252979/assign-format-of-datetime-with-data-annotations
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Birth Date yyyy-MM-dd")]
-        public DateTime? BirthDate { get; set; }
+        [Display(Name = "Birth Date (yyyy-MM-dd)")]
+        public DateTime? BirthDate { get; set; } //?Allows Property to be nullable
 
     }
 }
